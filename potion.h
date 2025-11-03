@@ -1,0 +1,9 @@
+#ifndef C_ROLEPLAYGAME_POTION_H
+#define C_ROLEPLAYGAME_POTION_H
+
+
+class potion {
+};
+
+
+#endif //C_ROLEPLAYGAME_POTION_H
