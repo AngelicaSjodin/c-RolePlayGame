@@ -6,11 +6,11 @@
 class Armor : public Item {
 
     public:
-    Armor(const std::string& name, int damageProtector);
+    Armor(const std::string& name, int damageProtection);
 
     private:
     
-    int damageProtector; //How much protection the armor gives.
+    int damageProtection; //How much protection the armor gives.
     
 
 };
