@@ -1,7 +1,7 @@
 #include "Weapon.h"
 
-Weapon::Weapon(const std::string &n, int dmg)
-    : Item(n), damage(dmg) {}
+Weapon::Weapon(const std::string &n, int dmg, WeaponType _type)
+    : Item(n, 0), damage(dmg) {type=_type;}
 
 int Weapon::getDamage() const {
     return damage;
