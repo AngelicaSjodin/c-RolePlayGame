@@ -4,10 +4,11 @@
 
 class Weapon : public Item {
 private:
-    int damage; //vapen skada
+    int damage;       // Attribut för skada
+
 
 public:
-    Weapon(const std::string &n, int dmg);  
+    Weapon(const std::string &n, int dmg);
     int getDamage() const;
 };
 
