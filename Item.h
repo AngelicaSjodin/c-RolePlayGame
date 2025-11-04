@@ -1,5 +1,5 @@
 #ifndef ITEM_H
-#define ITHEM_H
+#define ITEM_H
 
 #include <string>
 
@@ -10,6 +10,8 @@ private:
 
 public:
     Item(const std::string &n,int value);
+
+
 
     virtual ~Item() = default; //virtu construktor
 
