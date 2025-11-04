@@ -1,21 +1,11 @@
+#include "Game.h"
+
 #include <iostream>
 #include <vector>
 #include <string>
 
+
 using namespace std;
-
-class Game {
-private:
-    vector<string> inventory;
-
-public:
-    void run();
-    void showMenu();
-    void addItem();
-    void showItems() const;
-    void useItem();
-    void removeItem();
-};
 
 void Game::run() {
     int choice;
