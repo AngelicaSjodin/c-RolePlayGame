@@ -3,6 +3,9 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include "Armor.h"
+#include "Weapon.h"
+#include "Potion.h"
 
 using namespace std;
 
@@ -37,10 +40,44 @@ void Game::showMenu() {
 }
 
 void Game::addItem() {
-    cout << "Enter item name: ";
-    string item;
-    getline(cin, item);
-    inventory.push_back(item);
+    int index;
+    std::string name;
+    int value;
+
+    cout << "Select Item type:\n";
+    cout << "1. Armor\n";
+    cout << "2. Weapon\n";
+    cout << "3. Potion\n";
+    cin >> index;
+
+    cout << "Write Item name:\n";
+    cin >> name;
+
+    cout << "Write Item value:\n";
+    cin >> value;
+
+    if (index == 1) {
+        Armor armor{name, value};
+        inventory.push_back(armor);
+    }
+    else if (index == 2) {
+        int dmg;
+        cout << "Weapon damage:\n";
+        cin >> dmg;
+
+        WeaponType type{};
+        Weapon weapon{name, dmg, type};
+        inventory.push_back(weapon);
+    }
+    else if (index == 3) {
+        Potion potion{name, value};
+        inventory.push_back(potion);
+    }
+    else {
+        cout << "Invalid choice!\n";
+        return;
+    }
+
     cout << "Item added!\n";
 }
 
@@ -51,8 +88,10 @@ void Game::showItems() const {
     }
 
     cout << "Inventory:\n";
-    for (size_t i = 0; i < inventory.size(); i++) {
-        cout << i + 1 << ". " << inventory[i] << endl;
+    int index = 1;
+    for (auto& item : inventory) {
+        cout << index << ". "<< item.getName() << ": " << item.getValue() << endl;
+        ++index;
     }
 }
 
@@ -72,7 +111,7 @@ void Game::useItem() {
         return;
     }
 
-    cout << "You used: " << inventory[index - 1] << "!\n";
+    cout << "You used: " << inventory[index - 1].getName() << "!\n";
 }
 
 void Game::removeItem() {
@@ -91,6 +130,6 @@ void Game::removeItem() {
         return;
     }
 
-    cout << "Removed: " << inventory[index - 1] << "\n";
+    cout << "Removed: " << inventory[index - 1].getName() << "\n";
     inventory.erase(inventory.begin() + (index - 1));
 }

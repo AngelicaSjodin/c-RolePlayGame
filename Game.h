@@ -1,13 +1,15 @@
-
 #ifndef ROLEPLAYGAME_GAME_H
 #define ROLEPLAYGAME_GAME_H
+
+#include "Item.h"
+
 #include <vector>
 #include <string>
 
 using namespace std;
 class Game {
 private:
-    vector<string> inventory;
+    vector<Item> inventory;
 
 public:
     void run();
