@@ -1,6 +1,6 @@
 #include <string>
-#ifndef C_ROLEPLAYGAME_WEAPON_H
-#define C_ROLEPLAYGAME_WEAPON_H  
+#ifndef C_ROLEPLAYGAME_Armor_H
+#define C_ROLEPLAYGAME_Armor_H  
 #include "Item.h"
 
 class Armor : public Item {
@@ -14,4 +14,4 @@ class Armor : public Item {
     
 
 };
-#endif // C_ROLEPLAYGAME_WEAPON_H
+#endif // C_ROLEPLAYGAME_Armor_H
