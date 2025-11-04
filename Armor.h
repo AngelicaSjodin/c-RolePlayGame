@@ -6,7 +6,7 @@
 class Armor : public Item {
 
     public:
-    Armor(const std::string &name, int damageProtector);
+    Armor(const std::string& name, int damageProtector);
 
     private:
     
