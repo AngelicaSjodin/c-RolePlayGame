@@ -8,7 +8,8 @@
 class Armor : public Item {
 
     public:
-    Armor(const std::string& name, int damageProtection);
+    Armor(const std::string& name, int protection);
+    void use() override;
 
     private:
     
