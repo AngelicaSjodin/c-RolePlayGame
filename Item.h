@@ -1,15 +1,18 @@
 #ifndef ITEM_H
-#define ITHEM_H
+#define ITEM_H
 
 #include <string>
-
+enum class ItemType {Armor, Weapon, Potion};
 class Item{
 private:
     std::string name;   //namn på saken
     int value;
+    ItemType itemType;
 
 public:
-    Item(const std::string &n,int value);
+    Item(const std::string &n,int value, ItemType type);
+
+
 
     virtual ~Item() = default; //virtu construktor
 

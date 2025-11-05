@@ -2,15 +2,23 @@
 #define C_ROLEPLAYGAME_WEAPON_H  
 #include "Item.h"
 
-class Weapon : public Item {
-private:
-    int damage; //vapen skada
-
-public:
-    Weapon(const std::string &n, int dmg);  
-    int getDamage() const;
+enum class WeaponType {
+    Sword,
+    Crossbow
 };
 
+class Weapon : public Item {
+private:
+    int damage;       // Attribut för skada
+    WeaponType type; // Typ av vapen
+    bool isConsumable() const override;
+
+
+public:
+    Weapon(const std::string &n, int dmg, WeaponType t);
+    int getDamage() const;
+    WeaponType getType() const;
+};
 
 
 #endif // C_ROLEPLAYGAME_WEAPON_H

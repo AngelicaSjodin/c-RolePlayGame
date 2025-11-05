@@ -2,8 +2,8 @@
 #include "Item.h"
 #include <iostream>
 
-Item::Item(const std::string &name, int value)
-    : name(name),value(value){}
+Item::Item(const std::string &name, int value, ItemType _type)
+    : name(name),value(value), itemType(_type){}
 
 std::string Item::getName() const{
     return name;
