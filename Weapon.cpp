@@ -14,10 +14,3 @@ WeaponType Weapon::getType() const {
 bool Weapon::isConsumable() const {
     return false; // Weapons are not consumable
 }
-WeaponType Weapon::getType() const {
-    return type;
-}
-
-bool Weapon::isConsumable() const {
-    return false; // Weapons are not consumable
-}
