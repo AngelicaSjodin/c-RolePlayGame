@@ -16,8 +16,12 @@ void Game::run() {
     do {
         showMenu();
         cout << "Choice: ";
-        cin >> choice;
-        cin.ignore();
+        while (!(cin >> choice)) {
+        cout << "Please enter a valid number:\n";
+        cin.clear(); // Återställer strömmen
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Tar bort felaktig inmatning
+    }
+
 
         switch (choice) {
             case 1: addItem(); break;
@@ -50,17 +54,23 @@ cout << "1. Armor\n";
 cout << "2. Weapon\n";
 cout << "3. Potion\n";
 cin >> index;
-
-cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
-cout << "Write Item name:\n";
-getline(cin, name);
-
-cout << "Write Item value:\n";
-while (!(cin >> value)) {
-    cout << "Please enter a valid number for the item value:\n";
+while (index < 1 || index > 3) {
+    cout << "Please enter a valid option (1-3):\n";
     cin.clear();
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin >> index;
 }
+
+cout << "Write Item name:\n";
+cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Rensar eventuellt kvarvarande inmatningar
+getline(cin, name); // Läser in hela raden inklusive mellanslag
+
+cout << "Write Item value:\n";
+    while (!(cin >> value)) {
+        cout << "Please enter a valid number for the item value:\n";
+        cin.clear(); // Återställer strömmen
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Tar bort felaktig inmatning
+    }
 
 Item* newItem = nullptr;
 
@@ -92,31 +102,31 @@ if (index == 1) {
     return;
 }
 
-Player.addItem(newItem);
+player.addItem(newItem);
 cout << "Item added!\n";
 
 }
 
 void Game::showItems() const {
-Player.showItems();
+player.showItems();
 }
 
 void Game::useItem() {
 if (true) { 
-Player.showItems();
+player.showItems();
 cout << "Select item number to use: ";
 int idx;
 cin >> idx;
-Player.useItem(idx);
+player.useItem(idx);
 }
 }
 
 void Game::removeItem() {
 if (true) { 
-Player.showItems();
+player.showItems();
 cout << "Select item number to remove: ";
 int idx;
 cin >> idx;
-Player.removeItem(idx);
+player.removeItem(idx);
 }
 }
