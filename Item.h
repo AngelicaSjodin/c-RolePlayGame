@@ -2,22 +2,21 @@
 #define ITEM_H
 
 #include <string>
-
-enum class ItemType { Armor, Weapon, Potion };
-
-class Item {
+enum class ItemType {Armor, Weapon, Potion};
+class Item{
 private:
-    std::string name; //namn på saken
+    std::string name;   //namn på saken
     int value;
     ItemType itemType;
 
 public:
-    Item(const std::string &n, int value, ItemType type);
+    Item(const std::string &n,int value, ItemType type);
+
+
 
     virtual ~Item() = default; //virtu construktor
 
     std::string getName() const;
-
     int getValue() const;
 
     //poly

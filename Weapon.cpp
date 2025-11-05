@@ -2,8 +2,7 @@
 #include <iostream>
 
 Weapon::Weapon(const std::string &n, int dmg, WeaponType t)
-    : Item(n, 40, ItemType::Weapon), damage(dmg), type(t) {
-}
+    : Item(n, 40, ItemType::Weapon), damage(dmg),type(t){}
 
 int Weapon::getDamage() const {
     return damage;
@@ -18,5 +17,5 @@ bool Weapon::isConsumable() const {
 }
 
 void Weapon::use() {
-    std::cout << "Equipped weapon: " << getName() << " with damage " << damage << std::endl;
+std::cout << "Equipped weapon: " << getName() << " with damage " << damage << std::endl;
 }
