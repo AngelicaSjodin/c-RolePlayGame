@@ -12,13 +12,16 @@ private:
     Player player;
 
     void showMenu();
+
     void addItem();
+
     void showItems() const;
+
     void useItem();
+
     void removeItem();
-    
+
 public:
     void run();
-    
 };
 #endif //ROLEPLAYGAME_GAME_H
