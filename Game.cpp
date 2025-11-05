@@ -16,8 +16,12 @@ void Game::run() {
     do {
         showMenu();
         cout << "Choice: ";
-        cin >> choice;
-        cin.ignore();
+        while (!(cin >> choice)) {
+        cout << "Please enter a valid number:\n";
+        cin.clear(); // Återställer strömmen
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Tar bort felaktig inmatning
+    }
+    
 
         switch (choice) {
             case 1: addItem(); break;
