@@ -57,11 +57,10 @@ void Game::addItem() {
 
     cout << "Write Item value:\n";
     while (!(cin >> value)) {
-    cout << "Please enter a valid number for the item value:\n";
-    cin.clear(); // Återställer strömmen
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Tar bort felaktig inmatning
-}
-    
+        cout << "Please enter a valid number for the item value:\n";
+        cin.clear(); // Återställer strömmen
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Tar bort felaktig inmatning
+    }
 
     if (index == 1) {
         Armor armor{name, value};
