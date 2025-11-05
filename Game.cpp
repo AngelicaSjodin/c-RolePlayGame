@@ -6,6 +6,7 @@
 #include "Armor.h"
 #include "Weapon.h"
 #include "Potion.h"
+#include <limits>
 
 using namespace std;
 
@@ -56,10 +57,11 @@ void Game::addItem() {
 
     cout << "Write Item value:\n";
     while (!(cin >> value)) {
-        cout << "Please enter a valid number for the item value:\n";
-        cin.clear(); // Återställer strömmen
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Tar bort felaktig inmatning
-    }
+    cout << "Please enter a valid number for the item value:\n";
+    cin.clear(); // Återställer strömmen
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Tar bort felaktig inmatning
+}
+    
 
     if (index == 1) {
         Armor armor{name, value};
@@ -125,14 +127,24 @@ void Game::removeItem() {
         return;
     }
 
-    showItems();
-    cout << "Select item number to remove: ";
     int index;
-    cin >> index;
+    bool validChoice = false;
 
-    if (index < 1 || index > (int)inventory.size()) {
-        cout << "Invalid choice.\n";
-        return;
+    while (!validChoice) {
+        showItems();
+        cout << "Select item number to remove: ";
+
+        while (!(cin >> index)) {
+            cout << "Please enter a valid number for the item you will remove:\n";
+            cin.clear(); // Återställer strömmen
+            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+        }
+
+        if (index >= 1 && index <= (int)inventory.size()) {
+            validChoice = true;
+        } else {
+            cout << "Invalid choice. Please try again.\n";
+        }
     }
 
     cout << "Removed: " << inventory[index - 1].getName() << "\n";
