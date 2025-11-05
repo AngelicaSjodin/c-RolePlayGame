@@ -9,7 +9,7 @@
 
 class Game {
 private:
-    Player Player;
+    Player player;
 
     void showMenu();
     void addItem();

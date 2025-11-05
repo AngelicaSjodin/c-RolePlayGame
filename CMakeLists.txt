@@ -12,4 +12,5 @@ target_sources(dnd
         Potion.cpp
         Armor.cpp
         Weapon.cpp
+        player.cpp
 )
