@@ -54,6 +54,10 @@ void Game::addItem() {
     cout << "2. Weapon\n";
     cout << "3. Potion\n";
     cin >> index;
+    while (index < 1 || index > 3) {
+        cout << "Please enter a valid option (1-3):\n";
+        cin >> index;
+}
 
     cout << "Write Item name:\n";
     cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Rensar eventuellt kvarvarande inmatningar
