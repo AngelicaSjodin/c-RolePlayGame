@@ -1,6 +1,8 @@
-#include <string>
 #ifndef C_ROLEPLAYGAME_Armor_H
-#define C_ROLEPLAYGAME_Armor_H  
+#define C_ROLEPLAYGAME_Armor_H
+
+#include <string>
+
 #include "Item.h"
 
 class Armor : public Item {

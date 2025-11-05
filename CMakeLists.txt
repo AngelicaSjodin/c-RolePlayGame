@@ -7,6 +7,9 @@ add_executable(dnd)
 target_sources(dnd
         PRIVATE
         main.cpp
+        Game.cpp
         Item.cpp
-        potion.cpp
+        Potion.cpp
+        Armor.cpp
+        Weapon.cpp
 )
