@@ -6,3 +6,7 @@ Potion::Potion(const std::string &n, int heal)
 int Potion::getHealAmount() const {
     return healAmount;
 }
+
+bool Potion::isConsumable() const {
+    return true; // Potions are consumable
+}
