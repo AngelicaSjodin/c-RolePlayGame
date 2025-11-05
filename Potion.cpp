@@ -8,8 +8,12 @@ int Potion::getHealAmount() const {
     return healAmount;
 }
 
+
 void Potion::use() {
 std::cout << "You consumed " << getName() << " and healed " << healAmount << " HP\n";
 }
 
 bool Potion::isConsumable() const { return true; }
+
+
+

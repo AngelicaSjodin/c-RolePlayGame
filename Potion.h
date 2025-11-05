@@ -12,6 +12,7 @@ public:
     int getHealAmount() const;
     void use() override;
     bool isConsumable() const override;
+
 };
 
 #endif
