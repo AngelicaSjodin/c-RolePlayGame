@@ -10,6 +10,8 @@ private:
 public:
     Potion(const std::string &n, int heal);
     int getHealAmount() const;
+
+    bool isConsumable() const;
 };
 
 #endif
