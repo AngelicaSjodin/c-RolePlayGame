@@ -21,6 +21,7 @@ public:
 
     //poly
     virtual bool isConsumable() const; //en gång användning
+    virtual void use() = 0;
 };
 
 #endif
