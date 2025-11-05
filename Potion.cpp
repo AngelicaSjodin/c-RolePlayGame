@@ -2,7 +2,8 @@
 #include <iostream>
 
 Potion::Potion(const std::string &n, int heal)
-    : Item(n, heal, ItemType::Potion), healAmount(heal) {}
+    : Item(n, heal, ItemType::Potion), healAmount(heal) {
+}
 
 int Potion::getHealAmount() const {
     return healAmount;
@@ -10,10 +11,7 @@ int Potion::getHealAmount() const {
 
 
 void Potion::use() {
-std::cout << "You consumed " << getName() << " and healed " << healAmount << " HP\n";
+    std::cout << "You consumed " << getName() << " and healed " << healAmount << " HP\n";
 }
 
 bool Potion::isConsumable() const { return true; }
-
-
-
