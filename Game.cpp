@@ -16,12 +16,8 @@ void Game::run() {
     do {
         showMenu();
         cout << "Choice: ";
-        while (!(cin >> choice)) {
-        cout << "Please enter a valid number:\n";
-        cin.clear(); // Återställer strömmen
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Tar bort felaktig inmatning
-    }
-    
+        cin >> choice;
+        cin.ignore();
 
         switch (choice) {
             case 1: addItem(); break;
@@ -45,115 +41,82 @@ void Game::showMenu() {
 }
 
 void Game::addItem() {
-    int index;
-    std::string name;
-    int value;
+int index;
+std::string name;
+int value;
 
-    cout << "Select Item type:\n";
-    cout << "1. Armor\n";
-    cout << "2. Weapon\n";
-    cout << "3. Potion\n";
-    cin >> index;
-    while (index < 1 || index > 3) {
-        cout << "Please enter a valid option (1-3):\n";
-        cin >> index;
+cout << "Select Item type:\n";
+cout << "1. Armor\n";
+cout << "2. Weapon\n";
+cout << "3. Potion\n";
+cin >> index;
+
+cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); 
+cout << "Write Item name:\n";
+getline(cin, name);
+
+cout << "Write Item value:\n";
+while (!(cin >> value)) {
+    cout << "Please enter a valid number for the item value:\n";
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
 }
 
-    cout << "Write Item name:\n";
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Rensar eventuellt kvarvarande inmatningar
-    getline(cin, name); // Läser in hela raden inklusive mellanslag
+Item* newItem = nullptr;
 
-    cout << "Write Item value:\n";
-    while (!(cin >> value)) {
-        cout << "Please enter a valid number for the item value:\n";
-        cin.clear(); // Återställer strömmen
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Tar bort felaktig inmatning
-    }
-
-    if (index == 1) {
-        Armor armor{name, value};
-        inventory.push_back(armor);
-    }
-    else if (index == 2) {
-        int dmg;
-        cout << "Weapon damage:\n";
-        cin >> dmg;
-
-        WeaponType type{};
-        Weapon weapon{name, dmg, type};
-        inventory.push_back(weapon);
-    }
-    else if (index == 3) {
-        Potion potion{name, value};
-        inventory.push_back(potion);
-    }
-    else {
-        cout << "Invalid choice!\n";
-        return;
+if (index == 1) {
+    newItem = new Armor{name, value};
+} else if (index == 2) {
+    int dmg;
+    cout << "Weapon damage:\n";
+    while (!(cin >> dmg)) {
+        cout << "Please enter a valid number for weapon damage:\n";
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
     }
 
-    cout << "Item added!\n";
+    int wType;
+    cout << "Select weapon type:\n1. Sword\n2. Crossbow\n";
+    while (!(cin >> wType) || (wType != 1 && wType != 2)) {
+        cout << "Please enter 1 for Sword or 2 for Crossbow:\n";
+        cin.clear();
+        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    }
+
+    WeaponType type = (wType == 1) ? WeaponType::Sword : WeaponType::Crossbow;
+    newItem = new Weapon{name, dmg, type};
+} else if (index == 3) {
+    newItem = new Potion{name, value};
+} else {
+    cout << "Invalid choice!\n";
+    return;
+}
+
+Player.addItem(newItem);
+cout << "Item added!\n";
+
 }
 
 void Game::showItems() const {
-    if (inventory.empty()) {
-        cout << "Inventory is empty.\n";
-        return;
-    }
-
-    cout << "Inventory:\n";
-    int index = 1;
-    for (auto& item : inventory) {
-        cout << index << ". "<< item.getName() << ": " << item.getValue() << endl;
-        ++index;
-    }
+Player.showItems();
 }
 
 void Game::useItem() {
-    if (inventory.empty()) {
-        cout << "No items to use.\n";
-        return;
-    }
-
-    showItems();
-    cout << "Select item number to use: ";
-    int index;
-    cin >> index;
-
-    if (index < 1 || index > (int)inventory.size()) {
-        cout << "Invalid choice.\n";
-        return;
-    }
-
-    cout << "You used: " << inventory[index - 1].getName() << "!\n";
+if (true) { 
+Player.showItems();
+cout << "Select item number to use: ";
+int idx;
+cin >> idx;
+Player.useItem(idx);
+}
 }
 
 void Game::removeItem() {
-    if (inventory.empty()) {
-        cout << "No items to remove.\n";
-        return;
-    }
-
-    int index;
-    bool validChoice = false;
-
-    while (!validChoice) {
-        showItems();
-        cout << "Select item number to remove: ";
-
-        while (!(cin >> index)) {
-            cout << "Please enter a valid number for the item you will remove:\n";
-            cin.clear(); // Återställer strömmen
-            cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        }
-
-        if (index >= 1 && index <= (int)inventory.size()) {
-            validChoice = true;
-        } else {
-            cout << "Invalid choice. Please try again.\n";
-        }
-    }
-
-    cout << "Removed: " << inventory[index - 1].getName() << "\n";
-    inventory.erase(inventory.begin() + (index - 1));
+if (true) { 
+Player.showItems();
+cout << "Select item number to remove: ";
+int idx;
+cin >> idx;
+Player.removeItem(idx);
+}
 }
