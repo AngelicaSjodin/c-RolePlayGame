@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <string>
+#include <cctype>
 #include "Armor.h"
 #include "Weapon.h"
 #include "Potion.h"
@@ -49,6 +50,15 @@ void Game::showMenu() {
     cout << "5. Exit\n";
 }
 
+bool containsDigit(const std::string& str) {
+    for (char c : str) {
+        if (std::isdigit(c)) {
+            return true;
+        }
+    }
+    return false;
+}
+
 void Game::addItem() {
     int index;
     std::string name;
@@ -59,16 +69,22 @@ void Game::addItem() {
     cout << "2. Weapon\n";
     cout << "3. Potion\n";
     cin >> index;
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Rensa bufferten
     while (index < 1 || index > 3) {
-        cout << "Please enter a valid option (1-3):\n";
-        cin.clear();
-        cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
-        cin >> index;
+    cout << "Please enter a valid option (1-3):\n";
+    cin.clear();
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n');
+    cin >> index;
+    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Rensa bufferten igen
     }
 
-    cout << "Write Item name:\n";
-    cin.ignore(std::numeric_limits<std::streamsize>::max(), '\n'); // Rensar eventuellt kvarvarande inmatningar
-    getline(cin, name); // Läser in hela raden inklusive mellanslag
+    do {
+    std::cout << "Write Item name (no numbers allowed):\n";
+        std::getline(std::cin, name);
+        if (containsDigit(name)) {
+            std::cout << "Item name cannot contain numbers! Please try again.\n";
+        }
+    } while (containsDigit(name));
 
     cout << "Write Item value:\n";
     while (!(cin >> value)) {
